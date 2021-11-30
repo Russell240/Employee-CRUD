@@ -1,10 +1,15 @@
-SECRET_KEY = '1234$%'
-SQLALCHEMY_DATABASE_URI =  'mysql://flahe:''@localhost/flaskproject'
+from os import environ
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 class Config(object):
     """
     Common configurations
     """
+    SQLALCHEMY_DATABASE_URI =  'mysql://flahe:''@localhost/flaskproject'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Put any configurations here that are common across all environments
 
