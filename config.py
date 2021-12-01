@@ -8,7 +8,7 @@ class Config(object):
     """
     Common configurations
     """
-    SQLALCHEMY_DATABASE_URI =  'mysql://flahe:''@localhost/flaskproject'
+    
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Put any configurations here that are common across all environments
@@ -17,6 +17,11 @@ class DevelopmentConfig(Config):
     """
     Development configurations
     """
+    SQLALCHEMY_DATABASE_URI =  'mysql://flahe:''@localhost'
+    SQLALCHEMY_BINDS = {
+    'Employees':'mysqldb://flahe:''@localhost',
+   
+}
 
     DEBUG = True
     SQLALCHEMY_ECHO = True

@@ -4,9 +4,9 @@
 from flask import Flask, config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from app.config.config import APP_CONFIG
 
 from flask_migrate import Migrate
+
 
 # local imports
 from config import Config
@@ -21,11 +21,12 @@ login_manager = LoginManager()
 @app.route('/home')
 def helloIndex():
     return 'Hello World from Python Flask!'
-@app.route('/home')
+@app.route('/l')
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
     #app.config.from_object(Config)
-    app.config.from_object(APP_CONFIG["development"])
+    app.config.from_object(["development"])
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://flahe:password''@localhost/Employee"
    
     
     db.init_app(app)
