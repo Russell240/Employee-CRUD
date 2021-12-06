@@ -5,12 +5,11 @@ from flask import Flask, config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
-
-
-
-
 # local imports
 from config import Config
+import _mysql_connector
+
+
 
 # db variable initialization
 app = Flask(__name__)
@@ -27,7 +26,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True)
     #app.config.from_object(Config)
     app.config.from_object(["development"])
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1:3306/employees'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flahe:password@127.0.0.1:3306/employees'
     
      # temporary route
     login_manager.init_app(app) 
@@ -37,8 +36,6 @@ def create_app():
     db.init_app(app)
     with app.app_context():
         db.create_all()
-    app.app_context().push()
-    
     
     from app import models
     return app
