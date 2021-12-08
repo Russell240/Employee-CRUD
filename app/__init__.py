@@ -9,12 +9,9 @@ from flask_migrate import Migrate
 from config import Config
 import _mysql_connector
 
-
-
 # db variable initialization
 app = Flask(__name__)
 db = SQLAlchemy()
-
 
 login_manager = LoginManager()
 
@@ -26,7 +23,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True)
     #app.config.from_object(Config)
     app.config.from_object(["development"])
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flahe:password@127.0.0.1:3306/employees'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
     
      # temporary route
     login_manager.init_app(app) 
