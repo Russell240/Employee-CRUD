@@ -1,13 +1,13 @@
 # app/__init__.py
 
 # third-party imports
-from flask import Flask, config
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 # local imports
-from config import Config
-import _mysql_connector
+from config import app_config
+import mysql.connector
 
 # db variable initialization
 app = Flask(__name__)
@@ -31,9 +31,10 @@ def create_app():
     login_manager.login_view = "auth.login"
     migrate= Migrate(app, db)
     db.init_app(app)
-    with app.app_context():
-        db.create_all()
     
+    from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+
     from app import models
     return app
     
