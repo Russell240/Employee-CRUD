@@ -32,8 +32,11 @@ def create_app():
     migrate= Migrate(app, db)
     db.init_app(app)
     
-    from .admin import admin as admin_blueprint
-    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    """ from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')"""
+
+    from .home import home as home_blueprint
+    app.register_blueprint(home_blueprint)
 
     from app import models
     return app
