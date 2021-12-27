@@ -17,7 +17,7 @@ class DevelopmentConfig(Config):
     """
     Development configurations
     """
-    SQLALCHEMY_DATABASE_URI =  'mysql://flahe:''@localhost'
+    SQLALCHEMY_DATABASE_URI =  'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
     SQLALCHEMY_BINDS = {
     'Employees':'mysqldb://flahe:''@localhost',
    

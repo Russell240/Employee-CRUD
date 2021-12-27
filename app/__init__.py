@@ -19,11 +19,13 @@ login_manager = LoginManager()
 def helloIndex():
     return 'Hello World from Python Flask!'
 @app.route('/l')
-def create_app():
+def create_app(config_name='development'):
     app = Flask(__name__, instance_relative_config=True)
     #app.config.from_object(Config)
     app.config.from_object(["development"])
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
+    app.config.from_object(app_config[config_name])
+    app.config.from_pyfile('..\config.py')
     
      # temporary route
     login_manager.init_app(app) 
@@ -31,6 +33,7 @@ def create_app():
     login_manager.login_view = "auth.login"
     migrate= Migrate(app, db)
     db.init_app(app)
+    from app import models
     
     """ from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix='/admin')"""
@@ -38,7 +41,13 @@ def create_app():
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
 
-    from app import models
+    from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
+
+    
     return app
     
     
