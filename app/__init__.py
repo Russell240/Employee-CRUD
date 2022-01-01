@@ -5,6 +5,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_bootstrap import Bootstrap
 # local imports
 from config import app_config
 import mysql.connector
@@ -17,8 +18,8 @@ login_manager = LoginManager()
 
 @app.route('/home')
 def helloIndex():
-    return 'Hello World from Python Flask!'
-@app.route('/')
+    return render_template('home/index.html')
+@app.route('/index')
 def create_app(config_name='development'):
     app = Flask(__name__, instance_relative_config=True)
     #app.config.from_object(Config)
@@ -33,6 +34,7 @@ def create_app(config_name='development'):
     login_manager.login_view = "auth.login"
     migrate= Migrate(app, db)
     db.init_app(app)
+    Bootstrap(app)
     from app import models
     
     from .home import home as home_blueprint

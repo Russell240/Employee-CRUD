@@ -4,11 +4,11 @@ from flask_login import login_required
 
 from . import home
 
-
-@home.route('/k')
+# http://127.0.0.1/index
+@home.route('/index')
 def homepage():
     """
-    Render the homepage template on the / route
+    Render the homepage template on the /l route
     """
     return render_template('home/index.html', title="Welcome")
 
