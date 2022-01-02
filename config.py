@@ -19,9 +19,8 @@ class DevelopmentConfig(Config):
     """
     SQLALCHEMY_DATABASE_URI =  'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
     SQLALCHEMY_BINDS = {
-    'Employees':'mysqldb://flahe:''@localhost',
-   
-}
+    'Employees':'mysqldb://flahe:''@localhost',}
+    SECRET_KEY ='1234$%'
 
     DEBUG = True
     SQLALCHEMY_ECHO = True

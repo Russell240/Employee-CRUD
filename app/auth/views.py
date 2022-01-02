@@ -34,6 +34,7 @@ def register():
     # load registration template
     return render_template('auth/register.html', form=form, title='Register')
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     """
@@ -73,3 +74,15 @@ def logout():
 
     # redirect to the login page
     return redirect(url_for('auth.login'))
+
+@auth.errorhandler(403)
+def forbidden(error):
+        return render_template('errors/403.html', title='Forbidden'), 403
+
+@auth.errorhandler(404)
+def page_not_found(error):
+        return render_template('errors/404.html', title='Page Not Found'), 404
+
+@auth.errorhandler(500)
+def internal_server_error(error):
+        return render_template('errors/500.html', title='Server Error'), 500

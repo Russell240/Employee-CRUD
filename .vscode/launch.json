@@ -5,12 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://127.0.0.1/index",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
             "name": "Python: Flask",
             "type": "python",
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "app.py",
+                "FLASK_APP": "run.py",
                 "FLASK_ENV": "development"
             },
             "args": [

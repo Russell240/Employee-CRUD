@@ -22,11 +22,13 @@ def helloIndex():
 @app.route('/index')
 def create_app(config_name='development'):
     app = Flask(__name__, instance_relative_config=True)
-    #app.config.from_object(Config)
     app.config.from_object(["development"])
+    app.config['FLASK_ENV'] = 'development'
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('C:\\development\\technifist\\Employee CRUD\config.py')
+    
+   
     
      # temporary route
     login_manager.init_app(app) 
