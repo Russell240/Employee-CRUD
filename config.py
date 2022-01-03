@@ -1,5 +1,6 @@
 from os import environ
 from dotenv import load_dotenv
+import mysql.connector
 
 # Load environment variables
 load_dotenv()
@@ -17,7 +18,7 @@ class DevelopmentConfig(Config):
     """
     Development configurations
     """
-    SQLALCHEMY_DATABASE_URI =  'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
+    SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://flahe:password@127.0.0.1/employees"
     SQLALCHEMY_BINDS = {
     'Employees':'mysqldb://flahe:''@localhost',}
     SECRET_KEY ='1234$%'
