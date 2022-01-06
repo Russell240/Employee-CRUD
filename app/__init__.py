@@ -11,25 +11,22 @@ from config import app_config
 import mysql.connector
 
 # db variable initialization
-app = Flask(__name__ )
+
 db = SQLAlchemy()
 
 login_manager = LoginManager()
 
-@app.route('/home')
-def helloIndex():
-    return render_template('home/index.html')
-@app.route('/index')
+
+
 def create_app(config_name='development'):
     app = Flask(__name__ )
    
     app.config.from_object(["development"])
     app.config['FLASK_ENV'] = 'development'
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flahe:password@ 127.00.1:59536/employees'
     app.config.from_object(app_config[config_name])
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config.from_pyfile('C:\\development\\technifist\\Employee CRUD\config.py')
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://flahe:password@127.0.0.1:3306/employees"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://flahe:password@127.0.0.1:59536/employees"
     
     
      # temporary route

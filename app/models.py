@@ -1,7 +1,9 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask_sqlalchemy import SQLAlchemy
 from app import db, login_manager
+
+db = SQLAlchemy()
 
 class Employee(UserMixin, db.Model):
     """
