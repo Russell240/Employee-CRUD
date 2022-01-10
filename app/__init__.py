@@ -7,8 +7,9 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
 # local imports
-from config import app_config
-import mysql.connector
+from config import Config, app_config
+import pymysql
+
 
 # db variable initialization
 
@@ -17,16 +18,14 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 
 
-
 def create_app(config_name='development'):
     app = Flask(__name__ )
-   
     app.config.from_object(["development"])
     app.config['FLASK_ENV'] = 'development'
     app.config.from_object(app_config[config_name])
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config.from_pyfile('C:\\development\\technifist\\Employee CRUD\config.py')
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://flahe:password@127.0.0.1:59536/employees"
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://flahe:password@localhost:3306/employees'
     
     
      # temporary route

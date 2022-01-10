@@ -2,11 +2,14 @@
 
 from flask import flash, redirect, render_template, url_for
 from flask_login import login_required, login_user, logout_user
-
+from app import create_app 
 from . import auth
 from .forms import LoginForm, RegistrationForm
 from .. import db
 from ..models import Employee
+import sqlalchemy
+from sqlalchemy.ext.declarative import declarative_base
+
 
 # http://127.0.0.1/register
 @auth.route('/register', methods=['GET', 'POST'])
@@ -24,9 +27,11 @@ def register():
                             password=form.password.data)
 
         # add employee to the database
-        db.session.add(employee)
-        db.session.commit()
-        flash('You have successfully registered! You may now login.')
+       
+        with create_app().app_context():
+            db.session.add(employee)
+            db.session.commit()
+            flash('You have successfully registered! You may now login.')
 
         # redirect to the login page
         return redirect(url_for('auth.login'))

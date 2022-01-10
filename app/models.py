@@ -3,7 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from app import db, login_manager
 
+
+
 db = SQLAlchemy()
+
+#engine = create_engine('mysql+pymysql://flahe:password@localhost:3306/employees')
 
 class Employee(UserMixin, db.Model):
     """
